@@ -8,16 +8,21 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useProductStore } from "../store/product";
 
 function CreatePageTEMP() {
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: 0,
-    imageUrl: "", // aici trebuie să fie `imageUrl` pentru consistență
+    imageUrl: "",
   });
 
-  const handleAddProduct = async () => {
-    console.log(newProduct);
+  const { createProduct } = useProductStore(); // ✅ corect, cu P mare
+
+  const handleAddProduct = async () => {  
+    const { success, message } = await createProduct(newProduct); // ✅ la fel aici
+    console.log(success);
+    console.log(message);
   };
 
   return (

@@ -1,4 +1,3 @@
-import productRoutes from '../routes/product.routes.js';
 
 export  const getProducts= async (req, res) => {
     try {

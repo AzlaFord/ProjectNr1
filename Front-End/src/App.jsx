@@ -6,6 +6,7 @@ import Navbar from "./Component/navBarTEMP"
 import { BrowserRouter } from "react-router-dom"
 
 function App() {
+
   return (
     <BrowserRouter>
       <Box minH="100vh">

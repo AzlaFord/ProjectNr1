@@ -1,4 +1,3 @@
-import { request } from "express";
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
@@ -10,12 +9,14 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    imagine:{
-        type:String,
-        required:true
+    imagine: {
+    type: String,
+    required: true
     }
+    
 },
-{timeseries:true})
+{ timestamps: true }
+);
 
 const Product = mongoose.model('Product',productSchema)
 

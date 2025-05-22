@@ -4,25 +4,43 @@ import {
   Container,
   Heading,
   Input,
+  Toast,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useProductStore } from "../store/product";
+import { useToast } from "@chakra-ui/react";
 
 function CreatePageTEMP() {
   const [newProduct, setNewProduct] = useState({
     name: "",
-    price: 0,
+    price: '',
     imageUrl: "",
   });
 
   const { createProduct } = useProductStore(); // ✅ corect, cu P mare
-
+  const toast = useToast(); 
   const handleAddProduct = async () => {  
     const { success, message } = await createProduct(newProduct); // ✅ la fel aici
-    console.log(success);
-    console.log(message);
+    if(success) {
+      toast({
+        title: "Product created.",
+        description: "Product has been created successfully.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      })
+    }else{
+      toast({
+        title: "Error",
+        description: message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      })
+    }
+    setNewProduct({ name: "", price: 0, imageUrl: "" }); // Reset the form
   };
 
   return (
